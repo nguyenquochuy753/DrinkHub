@@ -1,0 +1,142 @@
+.drink-container {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 10px;
+}
+
+.drink-card {
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    padding-bottom: 10px;
+    margin-bottom: 20px;
+    width: 300px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    transition: transform 0.3s, box-shadow 0.3s;
+    position: relative;
+    overflow: hidden;
+}
+
+.drink-image {
+    width: 150px;
+    height: 150px;
+    object-fit: contain;
+    border-radius: 5px;
+    margin-bottom: 5px;
+    transition: transform 0.3s;
+}
+
+.drink-card h2 {
+    font-size: 16px;
+    margin-bottom: 5px;
+}
+
+.drink-card p {
+    font-size: 12px;
+    margin-bottom: 5px;
+}
+
+.drink-card button {
+    background-color: #4caf50;
+    color: white;
+    border: none;
+    padding: 8px 16px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 12px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.drink-card button:hover {
+    background-color: #45a049;
+}
+
+.drink-card:hover {
+    transform: scale(1.05);
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+.drink-card:hover .drink-image {
+    transform: scale(1.2);
+}
+
+.quantity-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 5px;
+}
+
+.quantity-button {
+    background-color: #4caf50;
+    color: white;
+    border: none;
+    width: 40px;
+    height: 30px;
+    border-radius: 50%;
+    font-size: 14px;
+    cursor: pointer;
+    text-align: center;
+    line-height: 15px;
+}
+
+.quantity-button:hover {
+    background-color: #45a049;
+}
+
+.quantity {
+    margin: 0 10px;
+    font-size: 16px;
+}
+
+.add-button-container {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    z-index: 9999;
+}
+
+.add-button {
+    background-color: #4caf50;
+    color: white;
+    border: none;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    font-size: 24px;
+    cursor: pointer;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+.add-button:hover {
+    background-color: #45a049;
+}
+
+.pagination {
+    display: flex;
+    position: fixed;
+    bottom: 15px;
+    justify-content: center;
+    align-items: center;
+    width: 85%;
+}
+
+.pagination-button {
+    background-color: #4caf50;
+    color: white;
+    border: none;
+    padding: 8px 12px;
+    margin: 0 5px;
+    font-size: 16px;
+    cursor: pointer;
+    border-radius: 5px;
+    transition: background-color 0.3s;
+}
+
+.pagination-button:hover {
+    background-color: #45a049;
+}

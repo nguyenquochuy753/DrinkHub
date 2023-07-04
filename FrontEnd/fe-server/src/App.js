@@ -11,6 +11,7 @@ function App() {
         <Sidebar />
         <div className="content">
           <Routes>
+            <Route path="/" element={<DrinkPage />} />
             <Route path="/drinkpage" element={<DrinkPage />} />
             <Route path="/orderpage" element={<OrderPage />} />
           </Routes>

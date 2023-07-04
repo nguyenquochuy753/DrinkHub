@@ -9,6 +9,7 @@
 
 .content {
   flex-grow: 1;
-  padding: 20px;
+  padding-top: 15px;
+  padding-left: 55px;
   margin-left: 250px;
 }

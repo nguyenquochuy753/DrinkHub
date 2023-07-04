@@ -12,6 +12,31 @@ const drinkController = {
         } catch (error) {
             res.status(500).json(error)
         }
+    },
+    getAllDrink : async(req,res)=>{
+        try {
+            const allDrink = await drinkModel.find()
+            res.status(200).json(allDrink)
+        } catch (error) {
+            res.status(500).json(error)
+        }
+    },
+    countDrink: async (req, res) => {
+        try {
+            const countDrink = await drinkModel.count()
+            res.status(200).json(countDrink)
+        } catch (error) {
+            res.status(500).json(error)
+        }
+    },
+    countPage : async(req,res)=>{
+        try {
+            const countDrink = await drinkModel.count();
+            const countPages = Math.ceil(countDrink / 6);
+            res.status(200).json(countPages);
+        } catch (error) {
+            res.status(500).json(error);
+        }
     }
 }
 
