@@ -11,7 +11,7 @@ function Sidebar() {
         </div>
         <ul className="navigation">
             <li>
-                <Link to="/drinkpage">Thức uống</Link>
+                <Link to="/drinkpage">Đồ uống & Bánh mì</Link>
             </li>
             <li>
                 <Link to="/orderpage">Đơn đặt hàng</Link>

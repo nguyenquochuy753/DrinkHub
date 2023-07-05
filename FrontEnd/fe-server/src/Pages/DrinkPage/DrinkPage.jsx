@@ -14,9 +14,9 @@ function DrinkPage() {
   const [showPopup, setShowPopup] = useState(false)
   const [newDrink, setNewDrink] = useState({
     name: '',
-    description: '',
+    des: '',
     price: 0,
-    image: null,
+    img_url: null,
   });
 
   //Nơi chứa Hàm
@@ -83,14 +83,26 @@ function DrinkPage() {
     const file = event.target.files[0];
     setNewDrink((prevDrink) => ({
       ...prevDrink,
-      image: file,
+      img_url: file,
     }));
   };
 
   const handleSubmit = (event) => {
+    const formData = new FormData();
+    formData.append('name', newDrink.name);
+    formData.append('des', newDrink.des);
+    formData.append('price', newDrink.price);
+    formData.append('img_url', newDrink.img_url);
     event.preventDefault()
-    console.log(newDrink)
+    axios.post('http://localhost:8000/v1/drink/addDrink',formData)
+      .then(() => {
+        console.log('Thêm thành công')
+      })
+      .catch(err => {
+        console.log(err)
+      })
     handleClosePopup()
+    window.location.reload()
   };
 
   return (
@@ -104,7 +116,7 @@ function DrinkPage() {
               <img src={image} alt={drink.name} className="drink-image" />
               <h2>{drink.name}</h2>
               <p>{drink.des}</p>
-              <p>Price: {drink.price}đ</p>
+              <p>Price: {drink.price}<b>đ</b></p>
               <div className="quantity-container">
                 <button className="quantity-button" onClick={handleDecreaseQuantity}>
                   -
@@ -159,10 +171,10 @@ function DrinkPage() {
             />
           </div>
           <div>
-            <label htmlFor='description'>Mô tả:</label>
+            <label htmlFor='des'>Mô tả:</label>
             <textarea
-              id='description'
-              name='description'
+              id='des'
+              name='des'
               value={newDrink.description}
               onChange={handleInputChange}
             ></textarea>
@@ -178,8 +190,8 @@ function DrinkPage() {
             />
           </div>
           <div>
-            <label htmlFor='image'>Hình ảnh:</label>
-            <input type='file' id='image' name='image' onChange={handleImageUpload} />
+            <label htmlFor='img_url'>Hình ảnh:</label>
+            <input type='file' id='img_url' name='img_url' onChange={handleImageUpload} />
           </div>
           <div className='modal-actions'>
             <button type='submit'>Thêm</button>
