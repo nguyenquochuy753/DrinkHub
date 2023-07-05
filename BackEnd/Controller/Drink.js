@@ -32,10 +32,20 @@ const drinkController = {
     countPage : async(req,res)=>{
         try {
             const countDrink = await drinkModel.count();
-            const countPages = Math.ceil(countDrink / 6);
+            const countPages = Math.ceil(countDrink / 8);
             res.status(200).json(countPages);
         } catch (error) {
             res.status(500).json(error);
+        }
+    },
+    drinkPaging : async(req , res)=>{
+        const pageNumber = req.params.pageNumber
+        const pageSize = 8
+        try {
+            const drinkPaging = await drinkModel.find().skip((pageNumber-1)*pageSize).limit(pageSize)
+            res.status(200).json(drinkPaging)
+        } catch (error) {
+            res.status(500).json(error)
         }
     }
 }
