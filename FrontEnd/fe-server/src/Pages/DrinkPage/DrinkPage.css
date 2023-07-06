@@ -1,3 +1,5 @@
+/* @import 'bootstrap/dist/css/bootstrap-grid.css'; */
+
 .drink-container {
     display: grid;
     grid-template-columns: repeat(4, 1fr);
@@ -5,8 +7,9 @@
 }
 
 .drink-page .quantity-drink {
-    margin-bottom: 20px;
+    margin-bottom: 10px;
 }
+
 
 .drink-card {
     border: 1px solid #ccc;

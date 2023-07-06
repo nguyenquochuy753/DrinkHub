@@ -2,6 +2,7 @@ import React , {useEffect , useState} from 'react'
 import "./DrinkPage.css"
 import axios from "axios"
 import Modal from "react-modal"
+// import { Alert } from 'react-bootstrap';
 
 Modal.setAppElement('#root')
 
@@ -12,6 +13,7 @@ function DrinkPage() {
   const [numberPage , setNumberPage] = useState(0)
   const [quantityDrinks , setQuantityDrinks] = useState()
   const [showPopup, setShowPopup] = useState(false)
+  // const [showSuccessAlert, setShowSuccessAlert] = useState(false)
   const [newDrink, setNewDrink] = useState({
     name: '',
     des: '',
@@ -87,6 +89,14 @@ function DrinkPage() {
     }));
   };
 
+  //Giới hạn từ trong mô tả
+  const truncateText = (text, maxLength) => {
+    if (text.length > maxLength) {
+      return text.slice(0, maxLength) + ' ...';
+    }
+    return text;
+  };
+
   const handleSubmit = (event) => {
     const formData = new FormData();
     formData.append('name', newDrink.name);
@@ -96,6 +106,10 @@ function DrinkPage() {
     event.preventDefault()
     axios.post('http://localhost:8000/v1/drink/addDrink',formData)
       .then(() => {
+        // setShowSuccessAlert(true); // Hiển thị thông báo thành công
+        // setTimeout(() => {
+        //   setShowSuccessAlert(false); // Ẩn thông báo thành công sau 2 giây
+        // }, 20000);
         console.log('Thêm thành công')
       })
       .catch(err => {
@@ -108,6 +122,11 @@ function DrinkPage() {
   return (
     <div className='drink-page'>
       <div className='quantity-drink'>Số lượng : <b>{quantityDrinks}</b></div>
+      {/* {showSuccessAlert && (
+        <Alert class="alert alert-success" role="alert" onClose={() => setShowSuccessAlert(false)} dismissible>
+          Thêm thành công!
+        </Alert>
+      )} */}
       <div className="drink-container">
         {drinkList.map((drink,key) => {
           const image = 'http://localhost:8000/' + drink.img_url;
@@ -115,7 +134,7 @@ function DrinkPage() {
             <div key={key} className="drink-card">
               <img src={image} alt={drink.name} className="drink-image" />
               <h2>{drink.name}</h2>
-              <p>{drink.des}</p>
+              <p>{truncateText(drink.des, 82)}</p>
               <p>Price: {drink.price}<b>đ</b></p>
               <div className="quantity-container">
                 <button className="quantity-button" onClick={handleDecreaseQuantity}>
