@@ -34,6 +34,25 @@ const userController = {
         } catch (error) {
             res.status(500).json(error);
         }
+    },
+    getProductInCart : async(req,res)=>{
+        const user_id = req.params._id
+        try {
+            const productInCart = await userModel.findById(user_id)
+                .populate({
+                    path: 'cart_id',
+                    populate: {
+                        path: 'id_product_add_cart',
+                        populate: {
+                            path: 'id_product',
+                            model: 'Drink'
+                        }
+                    }
+                })
+            res.status(200).json(productInCart)
+        } catch (error) {
+            res.status(500).json(error)
+        }
     }
 }
 

@@ -17,7 +17,7 @@ function Sidebar() {
                 <Link to="/orderpage">Đơn đặt hàng</Link>
             </li>
             <li>
-                <Link to="/drinkpage">Giỏ hàng</Link>
+                <Link to="/cartpage">Giỏ hàng</Link>
             </li>
             <li>
                 <Link to="/drinkpage">Doanh thu</Link>
