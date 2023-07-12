@@ -17,6 +17,7 @@
     width: 120px;
     height: 140px;
     margin-right: 10px;
+    object-fit: contain;
 }
 
 .cart-item-details {
