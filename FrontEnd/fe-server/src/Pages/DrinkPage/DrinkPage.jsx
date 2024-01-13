@@ -30,7 +30,7 @@ function DrinkPage() {
   }
   const paginationHandle = (page)=>{
     axios
-      .get('https://drink-hub-server.vercel.app/v1/drink/drinkPaging/'+page)
+      .get('http://localhost:8000/v1/drink/drinkPaging/'+page)
       .then((res) => {
         setDrinkList(res.data);
       })
@@ -41,22 +41,23 @@ function DrinkPage() {
 
   useEffect(() => {
     axios
-      .get('https://drink-hub-server.vercel.app/v1/drink/drinkPaging/1')
+      .get('http://localhost:8000/v1/drink/drinkPaging/1')
       .then((res) => {
         setDrinkList(res.data);
       })
       .catch((err) => {
         console.log(err);
       });
+
     axios
-      .get('https://drink-hub-server.vercel.app/v1/drink/countPage')
+      .get('http://localhost:8000/v1/drink/countPage')
       .then((res) => {
         setNumberPage(res.data);
       })
       .catch((err) => {
         console.log(err);
       });
-    axios.get('https://drink-hub-server.vercel.app/v1/drink/countDrink')
+    axios.get('http://localhost:8000/v1/drink/countDrink')
     .then((res)=>{
       setQuantityDrinks(res.data)
     })
@@ -104,7 +105,7 @@ function DrinkPage() {
     formData.append('price', newDrink.price);
     formData.append('img_url', newDrink.img_url);
     event.preventDefault()
-    axios.post('https://drink-hub-server.vercel.app/v1/drink/addDrink',formData)
+    axios.post('http://localhost:8000/v1/drink/addDrink',formData)
       .then(() => {
         // setShowSuccessAlert(true); // Hiển thị thông báo thành công
         // setTimeout(() => {
@@ -129,7 +130,7 @@ function DrinkPage() {
       )} */}
       <div className="drink-container">
         {drinkList.map((drink,key) => {
-          const image = 'https://drink-hub-server.vercel.app/' + drink.img_url;
+          const image = 'http://localhost:8000/' + drink.img_url;
           return (
             <div key={key} className="drink-card">
               <img src={image} alt={drink.name} className="drink-image" />
